@@ -1,0 +1,71 @@
+game:
+  # 各种游戏设置的默认值
+  default:
+    hunters_blind_time: 20
+    disable_anchor: false
+    disable_bed: false
+    disable_potion_arrow: false
+    display_advancement: true
+    # 在游戏的各个阶段内，玩家们使用多长时间后会被强制踢出
+    # 单位：秒
+    game_seconds:
+      # 在游戏开始前（即在大厅），玩家默认如不在15分钟内开始游戏，将会全部踢出并重置数据
+      before_game: 900
+      # 在游戏时，玩家默认如不在12小时内结束游戏，会被全部踢出并重置数据
+      in_game: 43200
+      # 在游戏结束后，玩家默认如不在2分钟内全部退出，会被全部踢出并关闭服务器
+      # 如打开自动重启，会自动打开重启bat并删除世界文件，重新打开服务器
+      after_game: 120
+  # 在游戏开始前（所有人进入主世界前）冻结主世界，以防开始游戏时已是晚上
+  freeze_time: false
+  # 预先加载区块
+  preload_chunks:
+    # 决定是否在启动时加载出生点一定范围的区块
+    # 如果为否，跑者在开始时可能遇到区块加载慢，无法移动的问题
+    enabled: true
+    # 加载半径
+    # 如半径为6，出生点区块是(0,0)，则会加载从(-6,-6)至(6,6)的正方形区域区块
+    radius: 6
+    # 每隔多少游戏刻加载一个区块
+    # 加载速度太快可能导致启动时卡顿！
+    tick_per_chunk: 50
+  # 自动重启（请谨慎操作，避免误删文件！）
+  # 在游戏结束后，如玩家全部退出/过了您设定的一定时间(after_game)，服务器会打开一个 Python 脚本且关闭本身，此时脚本会执行删除世界等操作
+  # 脚本在结束以上操作后会重启服务器，并关闭自身
+  # 脚本请在 Spigot / Modrinth 网站上下载，更多需要修改的信息请在脚本中查看（如窗口名称等）
+  # 示例：如脚本位置为 服务器文件夹/restart/脚本名称.py 请填 restart/脚本名称.py
+  # 注意：脚本必须在服务器文件夹中！
+  # 注意：请安装好 Python3 并在控制台输入 pip install pyyaml psutil
+  # 注意：提供的脚本并非现成，请自行修改启动bat名字，核心jar名字等（因为实在懒得写了）
+  auto_restart:
+    enabled: false
+    restart_bat_pos: "restart.py"
+
+  # 游戏结束后，是否会给玩家一些游戏货币作为奖励
+  # 需要 Vault 插件！
+  reward:
+    enabled: false
+    # 您可能需要适配自己服务器的货币系统，所以您可以设置将奖励的货币 乘以 ratio
+    # 如ratio为1，玩家在20分钟左右完成钻石护体进度，奖励大概为 600 单位
+    # 具体奖励公式请看 https://www.luogu.me/paste/m1dfbqy2
+    # 进度难度可以在 difficulty.yml 设置！
+    ratio: 1
+others:
+  # 大厅相关的设置（需要 Multiverse 插件）
+  lobby:
+    enabled: false
+    # 大厅世界名
+    waiting_world_name: "lobby"
+    # 游戏开始前，玩家进入后在的位置
+    waiting_room_pos:
+      x: 100.5
+      y: 66
+      z: 100.5
+    # 游戏结束后，玩家进入后在的位置
+    ending_world_name: "lobby"
+    ending_room_pos:
+      x: 0.5
+      y: 65
+      z: 0.5
+# 配置文件版本，请勿改动谢谢！
+version: 2

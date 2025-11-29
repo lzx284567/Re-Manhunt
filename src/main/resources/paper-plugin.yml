@@ -1,0 +1,29 @@
+name: Re:Manhunt
+version: 1.2.3
+main: rbtree.manhunt.Manhunt
+api-version: '1.21'
+authors: [ rbtree_ ]
+description: Manhunt 猎人游戏插件
+load: POSTWORLD
+
+commands:
+  manhunt:
+    description: "用来对游戏和房间进行设置的指令"
+    usage: "/manhunt <功能> ......"
+    aliases: [mh]
+
+permissions:
+  manhunt.cmd:
+    description: "Manhunt插件指令的权限"
+    default: op
+dependencies:
+  server:
+    PlaceholderAPI:
+      load: BEFORE
+      required: false
+    Multiverse-Core:
+      load: BEFORE
+      required: false
+    Vault:
+      load: BEFORE
+      required: false
